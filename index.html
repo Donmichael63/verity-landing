@@ -3,77 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verity Global Intelligence | Industrial Revenue Recovery</title>
+    <title>Verity Global InTech | Integrated Integrity</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg: #050a10; --accent: #64ffda; --text: #e6f1ff; --glass: rgba(255, 255, 255, 0.03); }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; margin: 0; line-height: 1.6; overflow-x: hidden; }
+        :root { --bg: #050a10; --accent: #64ffda; --text: #e6f1ff; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255,255,255,0.1); }
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; line-height: 1.6; }
         
-        /* Background decorative circles */
-        .circle { position: absolute; border-radius: 50%; filter: blur(80px); z-index: -1; }
-        .c1 { width: 400px; height: 400px; background: rgba(100, 255, 218, 0.05); top: -100px; right: -100px; }
-        .c2 { width: 300px; height: 300px; background: rgba(10, 191, 255, 0.05); bottom: 10%; left: -50px; }
+        /* Navigation */
+        nav { position: fixed; width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 10, 16, 0.9); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border); }
+        .logo { font-weight: 800; letter-spacing: 2px; color: var(--accent); font-size: 1.2rem; }
+        .nav-links a { color: var(--text); text-decoration: none; margin-left: 30px; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
 
-        header { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 20px; }
-        
-        .nav-logo { font-weight: 800; letter-spacing: 4px; font-size: 1.2rem; color: var(--accent); margin-bottom: 50px; }
-        
-        .hero-card { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 60px; border-radius: 24px; text-align: center; max-width: 800px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        
-        h1 { font-size: 3.5rem; margin: 0; background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-        .tagline { font-size: 1.2rem; color: #8892b0; margin: 20px 0 40px; }
+        /* Hero Section */
+        header { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px; background: radial-gradient(circle at top right, rgba(100, 255, 218, 0.05), transparent); }
+        .hero-content h1 { font-size: 4rem; margin: 0; background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-content p { font-size: 1.3rem; color: #8892b0; max-width: 700px; margin: 20px auto 40px; }
 
-        .division-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
-        .div-item { padding: 20px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
-        .div-item:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .div-item i { color: var(--accent); margin-bottom: 10px; font-size: 1.5rem; }
-        .div-item h3 { font-size: 0.9rem; letter-spacing: 1px; margin: 5px 0; }
+        /* Section Styling */
+        section { padding: 100px 10%; border-bottom: 1px solid var(--border); }
+        h2 { font-size: 2.5rem; color: var(--accent); margin-bottom: 50px; text-align: center; }
 
-        .cta-btn { margin-top: 50px; padding: 18px 35px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; transition: 0.4s; }
-        .cta-btn:hover { background: var(--accent); color: var(--bg); box-shadow: 0 0 20px var(--accent); }
+        /* The Three Arms Grid */
+        .arms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .arm-card { background: var(--glass); padding: 40px; border-radius: 20px; border: 1px solid var(--border); transition: 0.4s; }
+        .arm-card:hover { transform: translateY(-10px); border-color: var(--accent); background: rgba(100, 255, 218, 0.02); }
+        .arm-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+        .arm-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .arm-card p { color: #8892b0; font-size: 0.95rem; }
 
-        footer { position: fixed; bottom: 30px; width: 100%; text-align: center; font-size: 0.75rem; color: #495670; letter-spacing: 1px; }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            .division-grid { grid-template-columns: 1fr; }
-            .hero-card { padding: 40px 20px; }
-        }
+        /* About & Mission */
+        .about-flex { display: flex; gap: 50px; align-items: center; }
+        .mission-box { flex: 1; padding: 30px; background: var(--glass); border-left: 4px solid var(--accent); }
+
+        /* Contact Form */
+        .contact-container { max-width: 600px; margin: 0 auto; background: var(--glass); padding: 50px; border-radius: 20px; border: 1px solid var(--border); }
+        input, textarea { width: 100%; padding: 15px; margin-bottom: 20px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 5px; }
+        .btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 15px 40px; cursor: pointer; font-weight: bold; letter-spacing: 1px; transition: 0.4s; width: 100%; }
+        .btn:hover { background: var(--accent); color: var(--bg); box-shadow: 0 0 20px var(--accent); }
+
+        footer { padding: 50px; text-align: center; color: #495670; font-size: 0.8rem; }
+
+        @media (max-width: 900px) { .arms-grid { grid-template-columns: 1fr; } .hero-content h1 { font-size: 2.5rem; } .nav-links { display: none; } }
     </style>
 </head>
 <body>
-    <div class="circle c1"></div>
-    <div class="circle c2"></div>
 
-    <header>
-        <div class="nav-logo">VERITY GLOBAL</div>
-        
-        <div class="hero-card">
-            <h1>Intelligence, Audited.</h1>
-            <p class="tagline">Integrating IIoT and Blockchain to eliminate revenue leakage in West Africa's industrial landscape.</p>
-            
-            <div class="division-grid">
-                <div class="div-item">
-                    <i class="fas fa-microchip"></i>
-                    <h3>SYSTEMS</h3>
-                </div>
-                <div class="div-item">
-                    <i class="fas fa-city"></i>
-                    <h3>LIVING</h3>
-                </div>
-                <div class="div-item">
-                    <i class="fas fa-link"></i>
-                    <h3>ASSETS</h3>
-                </div>
-            </div>
+<nav>
+    <div class="logo">VERITY GLOBAL</div>
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#arms">The Three Arms</a>
+        <a href="#vision">Mission</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
 
-            <br><br>
-            <a href="mailto:md@verityglobal.com.ng" class="cta-btn">Initiate Audit</a>
+<header>
+    <div class="hero-content">
+        <h1>Verity Global InTech</h1>
+        <p>Integrated Integrity for West Africa's Industrial & Digital Landscape.</p>
+        <a href="#contact" class="btn" style="width: auto;">Request Industrial Audit</a>
+    </div>
+</header>
+
+<section id="arms">
+    <h2>The Three Arms</h2>
+    <div class="arms-grid">
+        <div class="arm-card">
+            <i class="fas fa-microchip"></i>
+            <h3>Intelligence Systems</h3>
+            <p>Deploying advanced IIoT sensors and automated auditing software to eliminate revenue leakage in manufacturing and production lines.</p>
         </div>
-    </header>
+        <div class="arm-card">
+            <i class="fas fa-house-signal"></i>
+            <h3>Smart Living</h3>
+            <p>Architecting IoT-integrated infrastructure for residential and commercial spaces, focusing on energy efficiency and automated security.</p>
+        </div>
+        <div class="arm-card">
+            <i class="fas fa-cubes"></i>
+            <h3>Digital Assets</h3>
+            <p>Leveraging blockchain technology to create immutable ledgers for asset tracking, valuation, and transparent financial auditing.</p>
+        </div>
+    </div>
+</section>
 
-    <footer>
-        &copy; 2026 VERITY GLOBAL INTELLIGENCE LTD | RC: [Your Number] | LAGOS, NG
-    </footer>
+<section id="about">
+    <h2>Our Origin</h2>
+    <div class="about-flex">
+        <div style="flex: 1;">
+            <p>Verity Global InTech was founded to solve a critical challenge in the African industrial sector: <strong>The Transparency Gap.</strong></p>
+            <p>We believe that technical truth is the foundation of growth. By integrating hardware intelligence with software integrity, we empower organizations to recover lost value and scale with absolute certainty.</p>
+        </div>
+        <div class="mission-box">
+            <h4>"Our data is our truth."</h4>
+            <p>We provide the tools to ensure that truth is never compromised.</p>
+        </div>
+    </div>
+</section>
+
+<section id="vision">
+    <div class="about-flex">
+        <div class="mission-box" style="border-left: 0; border-right: 4px solid var(--accent);">
+            <h3>Mission</h3>
+            <p>To eliminate industrial inefficiency through uncompromising technical integrity and real-time intelligence.</p>
+        </div>
+        <div class="mission-box">
+            <h3>Vision</h3>
+            <p>To be the primary architectural backbone of Africa's digital-industrial revolution by 2030.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Join the Waitlist</h2>
+    <div class="contact-container">
+        <p style="text-align: center; margin-bottom: 30px;">Request a consultation or join our Q3 2026 onboarding group.</p>
+        <form action="mailto:info@verityglobal.com.ng" method="post" enctype="text/plain">
+            <input type="text" placeholder="Organization Name" required>
+            <input type="email" placeholder="Professional Email" required>
+            <textarea placeholder="Tell us about your industrial or asset requirements" rows="4"></textarea>
+            <button type="submit" class="btn">SECURE YOUR SLOT</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    &copy; 2026 VERITY GLOBAL INTECH LTD | RC: [Your Number] | LAGOS, NIGERIA
+</footer>
+
 </body>
 </html>
